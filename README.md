@@ -11,13 +11,13 @@ This linked-list was originally shared by Christos Monogios via his [blog][blog]
 [npm][]:
 
 ```bash
-npm install --save typescript-linked-list
+npm install --save linked-list-typescript
 ```
 
 [yarn][]:
 
 ```bash
-yarn add typescript-linked-list
+yarn add linked-list-typescript
 ```
 
 ## Building from source
