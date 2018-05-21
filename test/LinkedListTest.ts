@@ -47,6 +47,59 @@ describe('Linked-List Tests', () => {
     expect(list.tail).to.equal(6);
   })
 
+  it('should support iterable protocol', () => {
+    let values: number[] = [4, 5, 6]
+    let list = new LinkedList<number>(...values);
+    let index = 0;
+    for (let item of list) {
+      expect(item).to.equal(values[index++])
+    }
+    expect(index).to.equal(values.length)
+  })
+
+  it('should support spread opertor', () => {
+    let values: number[] = [0, 1, 2]
+    let list = new LinkedList<number>(...values);
+    let count = 0;
+    function spreadTest(...args: number[]) {
+      for (let i in args) {
+        count++;
+        expect(args[i]).to.equal(values[i])
+      }
+    }
+    spreadTest(...list);
+    expect(count).to.equal(values.length);
+  })
+
+  it('should support deconstruction', () => {
+    let values: number[] = [0, 1, 2]
+    let list = new LinkedList<number>(...values);
+    let count = 0;
+    let [a, b, c] = list;
+    expect(a).to.equal(values[0]);
+    expect(b).to.equal(values[1]);
+    expect(c).to.equal(values[2]);    
+  })
+
+  it('should support iterator protocol', () => {
+    let values: number[] = [0, 1, 2]
+    let list = new LinkedList<number>(...values);
+    let iterator = list.iterator();
+    let iter = iterator.next();
+    expect(iter.value).to.equal(0);
+    expect(iter.done).to.be.false;
+    iter = iterator.next();
+    expect(iter.value).to.equal(1);
+    expect(iter.done).to.be.false;
+    iter = iterator.next();
+    expect(iter.value).to.equal(2);
+    expect(iter.done).to.be.false;
+    iter = iterator.next();
+    expect(iter.value).to.be.undefined;
+    expect(iter.done).to.be.true;
+  })
+
+
   it('should allow "any" type', () => {
     let values: any[] = [4, { hello: 'world' }, 'hello']
     let list = new LinkedList<any>(...values);
@@ -420,5 +473,15 @@ describe('Linked-List Tests', () => {
     expect(list.head).to.equal(4);
     expect(list.tail).to.equal(6);
     expect(result).to.deep.equal(values);
+    expect(result.length).to.equal(values.length);
+  });
+
+  it('should convert an empty list to an empty array', () => {
+    let list = new LinkedList<number>();
+    expect(list.length).to.equal(0);
+    expect(list.head).to.be.null;
+    expect(list.tail).to.be.null;
+    let result = list.toArray()
+    expect(result.length).to.equal(0);
   });
 });

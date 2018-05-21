@@ -1,10 +1,8 @@
 # linked-list-typescript 
 [![Build Status][travis-badge]][travis] [![Coverage Status][coveralls-badge]][coveralls]
 
-Simple Typescript [Linked List][wiki] with generics type templating
-
-### Overview
-This linked-list was originally shared by Christos Monogios via his [blog][blog]. The [original code][origcode] has been extended to support typedef generics to allow for type checking on stored values for linked lists.
+Simple Typescript [Linked List][wiki] with generics type templating and support for iterator 
+and iterable protocols.
 
 ## Installation
 
@@ -59,9 +57,9 @@ const { LinkedList } = require('linked-list')
 
 ## API
 
-### `LinkedList<T>(...values: T[])`
+### LinkedList<T>(...values: T[])
 
-#### `LinkedList<T>()`
+#### LinkedList<T>()
 
 Create an empty linked list by omitting any arguments during instantiation.
 
@@ -69,7 +67,7 @@ Create an empty linked list by omitting any arguments during instantiation.
 let list = new LinkedList<number>()
 ```
 
-#### `LinkedList<T>(...values: T[])`
+#### LinkedList<T>(...values: T[])
 
 Create a new list and initialize it with values. Values will be appended from left
 to right. i.e. the first argument will be at the head and the last argument will 
@@ -96,7 +94,7 @@ let items: = ['one', 'two', 'three', 4];
 let list = new LinkedList<string>(...items); // arguments are not all strings
 ```
 
-#### `LinkedList<Foo>(...values: Foo[])`
+#### LinkedList<Foo>(...values: Foo[])
 
 Create a new list using custom types or classes. All values are retained as references
 and not copies so removed values can be compared using strict comparison.
@@ -122,7 +120,9 @@ let val = list.removeHead()
 val // => foo1
 ```
 
-#### `LinkedList<any>(...values: any[])`
+
+
+#### LinkedList<any>(...values: any[])
 
 Specify `any` to allow the list to take values of any type.
 
@@ -133,7 +133,55 @@ list.head // => 4
 list.tail // => { hello: 'world' }
 ```
 
-#### `LinkedList<T>#head :T`
+#### LinkedList#[Symbol.iterator]
+
+The list supports both iterator and iterable protocols allowing it to be used
+with the `for...of` and `...spread` operators and with deconstruction.
+
+`for...of`:
+
+```typescript
+let items: number[] = [4, 5, 6];
+let list = new LinkedList<number>(...items);
+
+for (let item of list) {
+  console.log(item)
+}
+//4
+//5
+//6
+```
+
+`...spread`:
+
+```typescript
+let items: number[] = [4, 5, 6];
+let list = new LinkedList<number>(...items);
+
+function manyArgs(...args) {
+  for (let i in args) {
+    console.log(args[i])
+  }
+}
+manyArgs(...list);
+//4
+//5
+//6
+```
+
+`deconstruction`:
+
+```typescript
+let items: number[] = [4, 5, 6, 7];
+let list = new LinkedList<number>(...items);
+
+let [a, b, c] = list;
+//a => 4
+//b => 5
+//c => 6
+```
+
+#### LinkedList<T>#head :T
 
 Peek at the value at the head of the list. This will not remove the value
 from the list.
@@ -144,7 +192,7 @@ let list = new LinkedList<number>(...items);
 list.head // => 4
 ```
 
-#### `LinkedList<T>#tail :T`
+#### LinkedList<T>#tail :T
 
 Peek at the value at the tail of the list. This will not remove the value
 from the list.
@@ -155,7 +203,7 @@ let list = new LinkedList<number>(...items);
 list.tail // => 7
 ```
 
-#### `LinkedList<T>#length :number`
+#### LinkedList<T>#length :number
 
 Query the length of the list. An empty list will return 0.
 
@@ -165,7 +213,7 @@ let list = new LinkedList<number>(...items);
 list.length // => 4
 ```
 
-#### `LinkedList<T>#append(val: T, checkDuplicates: boolean = false): boolean`
+#### LinkedList<T>#append(val: T, checkDuplicates: boolean = false): boolean
 
 Append an item to the end of the list. The new item will replace the previous tail item
 and subsequent calls to [LinkedList<T>#head](#linkedlistthead-t) will now recall the new item.
@@ -196,7 +244,7 @@ list.tail // => 7
 results // => false
 ```
 
-#### `LinkedList<T>#prepend(val: T, checkDuplicates: boolean = false): boolean`
+#### LinkedList<T>#prepend(val: T, checkDuplicates: boolean = false): boolean
 
 Prepend an item to the beginning of the list. The new item will replace the previous head item
 and subsequent calls to `LinkedList<T>#head` will now recall the new item.
@@ -227,7 +275,7 @@ list.head // => 4
 result // => false
 ```
 
-#### `LinkedList<T>#removeHead(): T`
+#### LinkedList<T>#removeHead(): T
 
 Removes the item at the head of the list and returns the item.
 
@@ -241,7 +289,7 @@ list.head // => 5
 val // => 4
 ```
 
-#### `LinkedList<T>#removeTail(): T`
+#### LinkedList<T>#removeTail(): T
 
 Removes the item at the tail of the list and returns the item.
 
@@ -255,7 +303,7 @@ list.tail // => 6
 val // => 7
 ```
 
-#### `LinkedList<T>#remove(val: T): T`
+#### LinkedList<T>#remove(val: T): T
 
 Removes the specified item from the list and returns the item for convenience. If the 
 item can not be located in the list the method wil return undefined and the list will
@@ -281,7 +329,9 @@ list.tail // => 7
 val // => undefined
 ```
 
-#### `LinkedList<T>#toArray(): T[]`
+#### LinkedList<T>#toArray(): T[]
+
+This method simply returns `[...this]`.
 
 Converts the list into an array and returns the array representation. This method does
 not mutate the list in any way.
@@ -295,6 +345,10 @@ let list = new LinkedList<number>(...items);
 let result = list.toArray()
 result // => [4, 5, 6, 7]
 ```
+
+## Attribution
+
+This linked-list was originally shared by Christos Monogios via his [blog][blog]. The [original code][origcode] has been modified and extended to support typedef generics to allow for type checking on stored values for linked lists and iterable and iterator protocols.
 
 ## License
 

@@ -16,6 +16,19 @@ export class LinkedList<T> {
     }
   }
 
+  *iterator(): IterableIterator<T> {
+    let currentItem = this._head;
+
+    while(currentItem) {
+      yield currentItem.value
+      currentItem = currentItem.next
+    }
+  }
+
+  [Symbol.iterator]() {
+    return this.iterator();
+  }
+
   get head(): T {
     return this._head ? this._head.value : null;
   }
@@ -197,20 +210,21 @@ export class LinkedList<T> {
   }
 
   toArray(): T[] {
-    let arr: T[] = [];
-    let currentItem = this._head;
+    return [...this];
+    // let arr: T[] = [];
+    // let currentItem = this._head;
 
-    while (true) {
-      arr.push(currentItem.value);
+    // while (true) {
+    //   arr.push(currentItem.value);
 
-      if (currentItem.next) {
-        currentItem = currentItem.next;
-      } else {
-        break;
-      }
-    }
+    //   if (currentItem.next) {
+    //     currentItem = currentItem.next;
+    //   } else {
+    //     break;
+    //   }
+    // }
 
-    return arr;
+    // return arr;
   }
 
   private isDuplicate(val: T): boolean {
