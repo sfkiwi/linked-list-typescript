@@ -1,4 +1,4 @@
-# linked-list-typescript [![Build Status][travis-badge]][travis] [![Coverage Status][codecov-badge]][codecov]
+# linked-list-typescript [![Build Status][travis-badge]][travis] [![Coverage Status][coveralls-badge]][coveralls]
 
 Simple Typescript [Linked List][wiki] with generics type templating
 
@@ -305,7 +305,9 @@ the list items.
 
 [travis]: https://travis-ci.org/sfkiwi/linked-list-typescript
 
-[codecov-badge]: https://img.shields.io/codecov/c/github/sfkiwi/linked-list-typescript.svg
+[coveralls-badge]: https://img.shields.io/coveralls/github/sfkiwi/linked-list-typescript.svg
+
+[coveralls]: https://coveralls.io/github/sfkiwi/linked-list-typescript
 
 [npm]: https://docs.npmjs.com/cli/install
 
