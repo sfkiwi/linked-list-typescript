@@ -1,4 +1,5 @@
-# linked-list-typescript [![Build Status][travis-badge]][travis] [![Coverage Status][coveralls-badge]][coveralls]
+# linked-list-typescript 
+[![Build Status][travis-badge]][travis] [![Coverage Status][coveralls-badge]][coveralls]
 
 Simple Typescript [Linked List][wiki] with generics type templating
 
