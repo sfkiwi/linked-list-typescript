@@ -200,6 +200,19 @@ describe('Linked-List Tests', () => {
     expect(val).to.be.undefined;
   });
 
+  it('should handle removing Head from a list with single item', () => {
+    let values: number[] = [4]
+    let list = new LinkedList<number>(...values);
+    expect(list.length).to.equal(1);
+    expect(list.head).to.equal(4);
+    expect(list.tail).to.equal(4);
+    let val = list.removeHead()
+    expect(list.length).to.equal(0);
+    expect(list.head).to.be.null;
+    expect(list.tail).to.be.null;
+    expect(val).to.equal(4);
+  });
+
   it('should remove the last value in the list', () => {
     let values: number[] = [4, 5, 6]
     let list = new LinkedList<number>(...values);
@@ -223,6 +236,19 @@ describe('Linked-List Tests', () => {
     expect(list.head).to.be.null;
     expect(list.tail).to.be.null;
     expect(val).to.be.undefined;
+  });
+
+  it('should handle removing Tail from a list with single item', () => {
+    let values: number[] = [4]
+    let list = new LinkedList<number>(...values);
+    expect(list.length).to.equal(1);
+    expect(list.head).to.equal(4);
+    expect(list.tail).to.equal(4);
+    let val = list.removeTail()
+    expect(list.length).to.equal(0);
+    expect(list.head).to.be.null;
+    expect(list.tail).to.be.null;
+    expect(val).to.equal(4);
   });
 
   it('should remove a specified value from a primative list', () => {
@@ -352,6 +378,31 @@ describe('Linked-List Tests', () => {
     expect(list.head).to.equal(4);
     expect(list.tail).to.equal(6);
     let result = list.insert(5, 5, true);
+    expect(list.length).to.equal(3);
+    expect(list.head).to.equal(4);
+    expect(list.tail).to.equal(6);
+    expect(result).to.be.false;
+  });
+
+  it('should insert into an empty list', () => {
+    let list = new LinkedList<number>();
+    expect(list.length).to.equal(0);
+    expect(list.head).to.be.null;
+    expect(list.tail).to.be.null;
+    let result = list.insert(5, 4);
+    expect(list.length).to.equal(0);
+    expect(list.head).to.be.null;
+    expect(list.tail).to.be.null;
+    expect(result).to.be.false;
+  });
+
+  it('should not insert when previous cannot be found', () => {
+    let values: number[] = [4, 5, 6]
+    let list = new LinkedList<number>(...values);
+    expect(list.length).to.equal(3);
+    expect(list.head).to.equal(4);
+    expect(list.tail).to.equal(6);
+    let result = list.insert(8, 7);
     expect(list.length).to.equal(3);
     expect(list.head).to.equal(4);
     expect(list.tail).to.equal(6);

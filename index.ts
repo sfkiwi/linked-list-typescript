@@ -39,8 +39,7 @@ export class LinkedList<T> {
     let currentItem: LinkedListItem<T> = this._head;
 
     if (!currentItem) {
-      this._head = this._tail = newItem;
-      this._length = 1;
+      return false;
     } else {
       while (true) {
         if (currentItem.value === previousItem) {

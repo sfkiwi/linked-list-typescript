@@ -1,5 +1,5 @@
 Arguments: 
-  /Users/mike/.nvm/versions/node/v9.11.0/bin/node /usr/local/Cellar/yarn/1.5.1_1/libexec/bin/yarn.js run coverage:lcov
+  /Users/mike/.nvm/versions/node/v9.11.0/bin/node /usr/local/Cellar/yarn/1.5.1_1/libexec/bin/yarn.js run test
 
 PATH: 
   /Users/mike/miniconda3/bin:/Library/Frameworks/Python.framework/Versions/3.6/bin:/Library/Frameworks/Python.framework/Versions/2.7/bin:/usr/local/opt/openss1@1.1/bin:/Users/mike/.nvm/versions/node/v9.11.0/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/Applications/Postgres.app/Contents/Versions/latest/bin:/Applications/Visual Studio Code.app/Contents/Resources/app/bin:/Users/mike/opt/cassandra/bin
@@ -16,7 +16,7 @@ Platform:
 npm manifest: 
   {
     "name": "linked-list-typescript",
-    "version": "1.0.0",
+    "version": "1.0.7",
     "description": "simple typescript linked-list with generics typing",
     "main": "index.js",
     "repository": "https://github.com/sfkiwi/linked-list-typescript.git",
@@ -2784,7 +2784,7 @@ Trace:
   Error: Command failed.
   Exit code: 1
   Command: sh
-  Arguments: -c nyc report --reporter=text-lcov | coveralls
+  Arguments: -c nyc ./node_modules/.bin/mocha
   Directory: /Users/mike/Dropbox/Work/Code/linked-list-typescript
   Output:
   
