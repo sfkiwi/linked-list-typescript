@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "outDir": "build",
+    "declaration": true,
+    "strictNullChecks": false,
+    "noImplicitAny": true,
+    "skipLibCheck": true,
+    "target": "es6",
+    "module": "commonjs",
+    "sourceMap": true,
+  }
+}

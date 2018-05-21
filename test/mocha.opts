@@ -1,0 +1,6 @@
+-r ts-node/register 
+-r source-map-support/register 
+-u tdd 
+--timeout 5000 
+--colors 
+build/test/**/*Test.js
