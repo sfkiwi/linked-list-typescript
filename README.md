@@ -304,7 +304,7 @@ the list items.
 
 [yarn]: https://yarnpkg.com/lang/en/docs/install/
 
-[license]: LICENSE
+[license]: LICENSE.md
 
 [author]: http://github.com/sfkiwi
 
