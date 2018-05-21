@@ -2,15 +2,17 @@
 Simple Typescript [Linked List][wiki] with generics type templating
 
 ### Overview
-This linked-list was originally shared by Christos Monogios via his [blog][https://christosmonogios.com/2016/10/29/Create-A-Linked-List-With-TypeScript/]. The [original code][https://github.com/ChristosMonogios/Code-From-My-Blog-Articles/blob/master/Linked-List-With-TypeScript/test.ts] has been extended to support typedef generics to allow for type checking on stored values for linked lists.
+This linked-list was originally shared by Christos Monogios via his [blog][blog]. The [original code][origcode] has been extended to support typedef generics to allow for type checking on stored values for linked lists.
 
 ## Installation
 
 [npm][]:
 
 ```bash
-npm install typescript-linked-list
+npm install --save typescript-linked-list
 ```
+
+[yarn][]:
 
 ```bash
 yarn add typescript-linked-list
@@ -22,25 +24,26 @@ install dev dependencies. There are no production dependencies.
 
 ```bash
 yarn
+npm install
 ```
 
 build using the options in `tsconfig.json`
 
 ```bash
-yarn run build
+yarn|npm run build
 ```
 
 run all package tests
 
 ```bash
-yarn run test
+yarn|npm run test
 ```
 
 see the test coverage report
 
 ```bash
-yarn run coverage
-yarn run coverage:report
+yarn|npm run coverage
+yarn|npm run coverage:report
 ```
 
 ## Usage
@@ -58,13 +61,20 @@ const { LinkedList } = require('linked-list')
 
 #### `LinkedList<T>()`
 
+Create an empty linked list by omitting any arguments during instantiation.
+
 ```typescript
 let list = new LinkedList<number>()
 ```
 
-Create an empty linked list by omitting any arguments during instantiation.
-
 #### `LinkedList<T>(...values: T[])`
+
+Create a new list and initialize it with values. Values will be appended from left
+to right. i.e. the first argument will be at the head and the last argument will 
+be at the tail.
+
+Specify the type using the typescript templating to enable type-checking of all
+values going into and out of the list.
 
 ```typescript
 let items: number[] = [4, 5, 6, 7];
@@ -76,20 +86,18 @@ let items: string[] = ['one', 'two', 'three', 'four'];
 let list = new LinkedList<string>(...items);
 ```
 
+Typescript will check if the values match the type given to the template
+when initializing the new list.
+
 ```typescript
 let items: = ['one', 'two', 'three', 4];
-let list = new LinkedList<string>(...items); 
-// typescript will complain that arguments are not all strings
+let list = new LinkedList<string>(...items); // arguments are not all strings
 ```
 
-Create a new list and initialize it with values. Values will be appended from left
-to right. i.e. the first argument will be at the head and the last argument will 
-be at the tail.
-
-Specify the type using the typescript templating to enable type-checking of all
-values going into and out of the list.
-
 #### `LinkedList<Foo>(...values: Foo[])`
+
+Create a new list using custom types or classes. All values are retained as references
+and not copies so removed values can be compared using strict comparison.
 
 ```typescript
 class Foo {
@@ -112,10 +120,10 @@ let val = list.removeHead()
 val // => foo1
 ```
 
-Create a new list using custom types or classes. All values are retained as references
-and not copies so removed values can be compared using strict comparison.
-
 #### `LinkedList<any>(...values: any[])`
+
+Peek at the value at the head of the list. This will not remove the value
+from the list.
 
 ```typescript
 let list = new LinkedList<any>(4, 'hello' { hello: 'world' })
@@ -133,9 +141,6 @@ let items: number[] = [4, 5, 6, 7];
 let list = new LinkedList<number>(...items);
 list.head // => 4
 ```
-
-Peek at the value at the head of the list. This will not remove the value
-from the list.
 
 #### `LinkedList<T>#tail :T`
 
@@ -180,7 +185,7 @@ results // => false
 ```
 
 Append an item to the end of the list. The new item will replace the previous tail item
-and subsequent calls to `LinkedList<T>#tail` will now recall the new item.
+and subsequent calls to [LinkedList<T>#head](#linkedlistthead-t) will now recall the new item.
 
 The optional argument `checkDuplicates` is `false` by default. If set to `true`, it will
 check if the new value is already contained in the list. If the value is found to be a 
@@ -297,6 +302,8 @@ the list items.
 
 [npm]: https://docs.npmjs.com/cli/install
 
+[yarn]: https://yarnpkg.com/lang/en/docs/install/
+
 [license]: LICENSE
 
 [author]: http://github.com/sfkiwi
@@ -304,3 +311,7 @@ the list items.
 [wiki]: http://wikipedia.org/wiki/Linked_list
 
 [set]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set
+
+[blog]: https://christosmonogios.com/2016/10/29/Create-A-Linked-List-With-TypeScript/
+
+[origcode]: https://github.com/ChristosMonogios/Code-From-My-Blog-Articles/blob/master/Linked-List-With-TypeScript/test.ts
