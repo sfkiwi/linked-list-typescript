@@ -1,9 +1,9 @@
 {
-  "name": "linked-list",
+  "name": "linked-list-typescript",
   "version": "1.0.0",
   "description": "simple typescript linked-list with generics typing",
   "main": "index.js",
-  "repository": "https://github.com/sfkiwi/linked-list.git",
+  "repository": "https://github.com/sfkiwi/linked-list-typescript.git",
   "author": "Mike Sutherland <mjfsutherland@gmail.com>",
   "license": "MIT",
   "private": false,
@@ -11,9 +11,9 @@
     "typescript", "javascript", "linked-list", "linkedlist"
   ],
   "bugs": {
-    "url": "https://github.com/sfkiwi/linked-list/issues"
+    "url": "https://github.com/sfkiwi/linked-list-typescript/issues"
   },
-  "homepage": "https://github.com/sfkiwi/linked-list#readme",
+  "homepage": "https://github.com/sfkiwi/linked-list-typescript#readme",
   "scripts": {
     "pretest": "yarn run build",
     "build": "tsc",
