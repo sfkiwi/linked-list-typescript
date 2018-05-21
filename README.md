@@ -124,8 +124,7 @@ val // => foo1
 
 #### `LinkedList<any>(...values: any[])`
 
-Peek at the value at the head of the list. This will not remove the value
-from the list.
+Specify `any` to allow the list to take values of any type.
 
 ```typescript
 let list = new LinkedList<any>(4, 'hello' { hello: 'world' })
@@ -134,9 +133,10 @@ list.head // => 4
 list.tail // => { hello: 'world' }
 ```
 
-Specify `any` to allow the list to take values of any type.
-
 #### `LinkedList<T>#head :T`
+
+Peek at the value at the head of the list. This will not remove the value
+from the list.
 
 ```typescript
 let items: number[] = [4, 5, 6, 7];
@@ -146,16 +146,18 @@ list.head // => 4
 
 #### `LinkedList<T>#tail :T`
 
+Peek at the value at the tail of the list. This will not remove the value
+from the list.
+
 ```typescript
 let items: number[] = [4, 5, 6, 7];
 let list = new LinkedList<number>(...items);
 list.tail // => 7
 ```
 
-Peek at the value at the tail of the list. This will not remove the value
-from the list.
-
 #### `LinkedList<T>#length :number`
+
+Query the length of the list. An empty list will return 0.
 
 ```typescript
 let items: number[] = [4, 5, 6, 7];
@@ -163,9 +165,10 @@ let list = new LinkedList<number>(...items);
 list.length // => 4
 ```
 
-Query the length of the list. An empty list will return 0.
-
 #### `LinkedList<T>#append(val: T, checkDuplicates: boolean = false): boolean`
+
+Append an item to the end of the list. The new item will replace the previous tail item
+and subsequent calls to [LinkedList<T>#head](#linkedlistthead-t) will now recall the new item.
 
 ```typescript
 let items: number[] = [4, 5, 6, 7];
@@ -175,6 +178,13 @@ list.append(8)
 list.length // => 5
 list.tail // => 8
 ```
+
+The optional argument `checkDuplicates` is `false` by default. If set to `true`, it will
+check if the new value is already contained in the list. If the value is found to be a
+duplicate it will not be added and the method will return `false`.
+
+Values are checked using strict `===` comparison. Checking for duplicates inserts the list
+into a [`Set`][set] and then checks if the value is contained in the set.
 
 ```typescript
 let items: number[] = [4, 5, 6, 7];
@@ -186,17 +196,10 @@ list.tail // => 7
 results // => false
 ```
 
-Append an item to the end of the list. The new item will replace the previous tail item
-and subsequent calls to [LinkedList<T>#head](#linkedlistthead-t) will now recall the new item.
-
-The optional argument `checkDuplicates` is `false` by default. If set to `true`, it will
-check if the new value is already contained in the list. If the value is found to be a 
-duplicate it will not be added and the method will return `false`.
-
-Values are checked using strict `===` comparison. Checking for duplicates inserts the list
-into a [`Set`][set] and then checks if the value is contained in the set. 
-
 #### `LinkedList<T>#prepend(val: T, checkDuplicates: boolean = false): boolean`
+
+Prepend an item to the beginning of the list. The new item will replace the previous head item
+and subsequent calls to `LinkedList<T>#head` will now recall the new item.
 
 ```typescript
 let items: number[] = [4, 5, 6, 7];
@@ -206,6 +209,13 @@ list.prepend(3)
 list.length // => 5
 list.head // => 3
 ```
+
+The optional argument `checkDuplicates` is `false` by default. If set to `true`, it will
+check if the new value is already contained in the list. If the value is found to be a 
+duplicate it will not be added and the method will return `false`.
+
+Values are checked using strict `===` comparison. Checking for duplicates inserts the list
+into a [`Set`][set] and then checks if the value is contained in the set. 
 
 ```typescript
 let items: number[] = [4, 5, 6, 7];
@@ -217,17 +227,9 @@ list.head // => 4
 result // => false
 ```
 
-Prepend an item to the beginning of the list. The new item will replace the previous head item
-and subsequent calls to `LinkedList<T>#head` will now recall the new item.
-
-The optional argument `checkDuplicates` is `false` by default. If set to `true`, it will
-check if the new value is already contained in the list. If the value is found to be a 
-duplicate it will not be added and the method will return `false`.
-
-Values are checked using strict `===` comparison. Checking for duplicates inserts the list
-into a [`Set`][set] and then checks if the value is contained in the set. 
-
 #### `LinkedList<T>#removeHead(): T`
+
+Removes the item at the head of the list and returns the item.
 
 ```typescript
 let items: number[] = [4, 5, 6, 7];
@@ -239,9 +241,9 @@ list.head // => 5
 val // => 4
 ```
 
-Removes the item at the head of the list and returns the item.
-
 #### `LinkedList<T>#removeTail(): T`
+
+Removes the item at the tail of the list and returns the item.
 
 ```typescript
 let items: number[] = [4, 5, 6, 7];
@@ -253,9 +255,11 @@ list.tail // => 6
 val // => 7
 ```
 
-Removes the item at the tail of the list and returns the item.
-
 #### `LinkedList<T>#remove(val: T): T`
+
+Removes the specified item from the list and returns the item for convenience. If the 
+item can not be located in the list the method wil return undefined and the list will
+not be altered.
 
 ```typescript
 let items: number[] = [4, 5, 6, 7];
@@ -277,11 +281,13 @@ list.tail // => 7
 val // => undefined
 ```
 
-Removes the specified item from the list and returns the item for convenience. If the 
-item can not be located in the list the method wil return undefined and the list will
-not be altered.
-
 #### `LinkedList<T>#toArray(): T[]`
+
+Converts the list into an array and returns the array representation. This method does
+not mutate the list in any way.
+
+Objects are not copied, so all non-primitive items in the array are still referencing
+the list items.
 
 ```typescript
 let items: number[] = [4, 5, 6, 7];
@@ -289,12 +295,6 @@ let list = new LinkedList<number>(...items);
 let result = list.toArray()
 result // => [4, 5, 6, 7]
 ```
-
-Converts the list into an array and returns the array representation. This method does
-not mutate the list in any way.
-
-Objects are not copied, so all non-primitive items in the array are still referencing
-the list items.
 
 ## License
 
