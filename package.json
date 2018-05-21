@@ -1,6 +1,6 @@
 {
   "name": "linked-list-typescript",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "simple typescript linked-list with generics typing",
   "main": "index.js",
   "repository": "https://github.com/sfkiwi/linked-list-typescript.git",
