@@ -1,4 +1,5 @@
-# linked-list-typescript
+# linked-list-typescript [![Build Status][travis-badge]][travis] [![Coverage Status][codecov-badge]][codecov]
+
 Simple Typescript [Linked List][wiki] with generics type templating
 
 ### Overview
@@ -299,6 +300,12 @@ the list items.
 [MIT][license] © [Michael Sutherland][author]
 
 <!-- Definitions -->
+
+[travis-badge]: https://img.shields.io/travis/sfkiwi/linked-list-typescript.svg
+
+[travis]: https://travis-ci.org/sfkiwi/linked-list-typescript
+
+[codecov-badge]: https://img.shields.io/codecov/c/github/sfkiwi/linked-list-typescript.svg
 
 [npm]: https://docs.npmjs.com/cli/install
 
