@@ -5,7 +5,7 @@ Simple Typescript [Linked List][wiki] with generics type templating and support 
 and iterable protocols.
 
 See Also:
- - [linked-list-typescript][list]
+ - [hashlist-typescript][hashlist]
  - [stack-typescript][stack]
  - [queue-typescript][queue]
 
