@@ -1,6 +1,6 @@
 {
   "name": "linked-list-typescript",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "description": "simple typescript linked-list with generics typing",
   "main": "lib/src/index.js",
   "typings": "lib/src/index",
