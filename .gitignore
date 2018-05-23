@@ -1,5 +1,5 @@
 # Build Directories
-build
+lib
 .nyc_output
 coverage
 

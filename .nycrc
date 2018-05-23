@@ -1,8 +1,8 @@
 {
   "nyc": {
     "extension": [ ".js" ],
-    "include": [ "build/src/**/*.js" ],
-    "exclude": [ "coverage/**", "test/**", "src/client/**", "src/models/**", "src/workers/**", "**/*.d.ts", "**/*Test.ts" ],
+    "include": [ "lib/**/*.js" ],
+    "exclude": [ "coverage/**", "src/**/*", "**/*.d.ts", "**/*Test.ts" ],
     "require": [
       "ts-node/register",
       "source-map-support/register"

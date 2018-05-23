@@ -1,5 +1,5 @@
 Arguments: 
-  /Users/mike/.nvm/versions/node/v9.11.0/bin/node /usr/local/Cellar/yarn/1.5.1_1/libexec/bin/yarn.js run test
+  /Users/mike/.nvm/versions/node/v9.11.0/bin/node /usr/local/Cellar/yarn/1.5.1_1/libexec/bin/yarn.js run build
 
 PATH: 
   /Users/mike/miniconda3/bin:/Library/Frameworks/Python.framework/Versions/3.6/bin:/Library/Frameworks/Python.framework/Versions/2.7/bin:/usr/local/opt/openss1@1.1/bin:/Users/mike/.nvm/versions/node/v9.11.0/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/Applications/Postgres.app/Contents/Versions/latest/bin:/Applications/Visual Studio Code.app/Contents/Resources/app/bin:/Users/mike/opt/cassandra/bin
@@ -16,9 +16,13 @@ Platform:
 npm manifest: 
   {
     "name": "linked-list-typescript",
-    "version": "1.0.9",
+    "version": "1.0.10",
     "description": "simple typescript linked-list with generics typing",
-    "main": "index.js",
+    "main": "lib/index.js",
+    "typings": "lib/index",
+    "files": [
+      "lib/"
+    ],
     "repository": "https://github.com/sfkiwi/linked-list-typescript.git",
     "author": "Mike Sutherland <mjfsutherland@gmail.com>",
     "license": "MIT",
@@ -41,7 +45,7 @@ npm manifest:
       "coverage:lcov": "nyc report --reporter=text-lcov | coveralls",
       "coverage:report": "./node_modules/.bin/nyc report --reporter text-summary --reporter html && open coverage/index.html",
       "cover": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
-      "clean": "rm -fr build coverage .nyc_output"
+      "clean": "rm -fr clean coverage .nyc_output"
     },
     "devDependencies": {
       "@types/chai": "^4.1.2",
@@ -2782,9 +2786,9 @@ Lockfile:
 
 Trace: 
   Error: Command failed.
-  Exit code: 1
+  Exit code: 2
   Command: sh
-  Arguments: -c nyc ./node_modules/.bin/mocha
+  Arguments: -c tsc
   Directory: /Users/mike/Dropbox/Work/Code/linked-list-typescript
   Output:
   

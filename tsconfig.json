@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "outDir": "build",
+    "outDir": "lib/",
     "declaration": true,
     "strictNullChecks": false,
     "noImplicitAny": true,
@@ -8,5 +8,9 @@
     "target": "es6",
     "module": "commonjs",
     "sourceMap": true,
-  }
+  },
+  "include": [
+    "./src/**/*",
+    "./test/**/*"
+  ]
 }

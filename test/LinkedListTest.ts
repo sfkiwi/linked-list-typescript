@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { LinkedList } from '../index'
+import { LinkedList } from '../src/index'
 
 class Foo {
   private val: number;
