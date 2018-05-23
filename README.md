@@ -4,6 +4,11 @@
 Simple Typescript [Linked List][wiki] with generics type templating and support for iterator 
 and iterable protocols.
 
+See Also:
+ - [linked-list-typescript][list]
+ - [stack-typescript][stack]
+ - [queue-typescript][queue]
+
 ## Installation
 
 [npm][]:
@@ -51,8 +56,8 @@ yarn|npm run coverage:report
 Importing:
 
 ```typescript
-import { LinkedList } from 'linked-list';
-const { LinkedList } = require('linked-list')
+import { LinkedList } from 'linked-list-typescript';
+const { LinkedList } = require('linked-list-typescript')
 ```
 
 ## API
