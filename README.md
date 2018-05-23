@@ -384,3 +384,11 @@ This linked-list was originally shared by Christos Monogios via his [blog][blog]
 [blog]: https://christosmonogios.com/2016/10/29/Create-A-Linked-List-With-TypeScript/
 
 [origcode]: https://github.com/ChristosMonogios/Code-From-My-Blog-Articles/blob/master/Linked-List-With-TypeScript/test.ts
+
+[list]: https://www.npmjs.com/package/linked-list-typescript
+
+[stack]: https://www.npmjs.com/package/stack-typescript
+
+[queue]: https://www.npmjs.com/package/queue-typescript
+
+[hashlist]: https://www.npmjs.com/package/hashlist-typescript
