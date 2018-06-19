@@ -484,4 +484,43 @@ describe('Linked-List Tests', () => {
     let result = list.toArray()
     expect(result.length).to.equal(0);
   });
+
+  it('should return the first n values of the list', () => {
+    let values: number[] = [4, 5, 6, 7, 8, 9]
+    let list = new LinkedList<number>(...values);
+    expect(list.length).to.equal(6);
+    expect(list.head).to.equal(4);
+    expect(list.tail).to.equal(9);
+    let result = list.first(3);
+    expect(result.length).to.equal(3);
+    expect(result[0]).to.equal(4);
+    expect(result[1]).to.equal(5);
+    expect(result[2]).to.equal(6);
+  });
+
+  it('should return empty array when n is zero', () => {
+    let values: number[] = [4, 5, 6, 7, 8, 9]
+    let list = new LinkedList<number>(...values);
+    expect(list.length).to.equal(6);
+    expect(list.head).to.equal(4);
+    expect(list.tail).to.equal(9);
+    let result = list.first(0);
+    expect(result.length).to.equal(0);
+  });
+
+  it('should return the lesser of n values or length of list', () => {
+    let values: number[] = [4, 5, 6, 7, 8, 9]
+    let list = new LinkedList<number>(...values);
+    expect(list.length).to.equal(6);
+    expect(list.head).to.equal(4);
+    expect(list.tail).to.equal(9);
+    let result = list.first(7);
+    expect(result.length).to.equal(6);
+    expect(result[0]).to.equal(4);
+    expect(result[1]).to.equal(5);
+    expect(result[2]).to.equal(6);
+    expect(result[3]).to.equal(7);
+    expect(result[4]).to.equal(8);
+    expect(result[5]).to.equal(9);
+  })
 });

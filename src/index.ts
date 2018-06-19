@@ -209,22 +209,21 @@ export class LinkedList<T> {
     return currentItem.value;
   }
 
+  first(num: number): T[] {
+    let iter = this.iterator();
+    let result = [];
+
+    let n = Math.min(num, this.length);
+
+    for (let i = 0; i < n; i++) {
+      let val = iter.next();
+      result.push(val.value);
+    }
+    return result;
+  }
+
   toArray(): T[] {
     return [...this];
-    // let arr: T[] = [];
-    // let currentItem = this._head;
-
-    // while (true) {
-    //   arr.push(currentItem.value);
-
-    //   if (currentItem.next) {
-    //     currentItem = currentItem.next;
-    //   } else {
-    //     break;
-    //   }
-    // }
-
-    // return arr;
   }
 
   private isDuplicate(val: T): boolean {
