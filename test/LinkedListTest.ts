@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { LinkedList } from '../src/index'
+import { LinkedList, Intrusive } from '../src/index'
 
 class Foo {
   private val: number;
@@ -522,5 +522,64 @@ describe('Linked-List Tests', () => {
     expect(result[3]).to.equal(7);
     expect(result[4]).to.equal(8);
     expect(result[5]).to.equal(9);
-  })
+  });
+});
+
+describe('Linked-List Tests', () => {
+  interface Node extends Intrusive.ListEmbeddable<Node> {
+    value:Number;
+  }
+  function createNode(value:Number):Node {
+    return {value} as any;
+  }
+  it('should return empty when initially constructed',()=>{
+    let list = Intrusive.createList<Node>();
+    expect(list.empty()).to.be.true;
+  });
+  it('should return empty after adding and removing an element',()=>{
+    let list = Intrusive.createList<Node>();
+    let node = createNode(1);
+    list.add(node);
+    list.remove(node);
+  });
+  it('should remove only the specified node -- keeping the rest intact',()=>{
+    let list = Intrusive.createList<Node>();
+    let toRemove:Node;
+    for(let i = 0;i<5;i++) {
+      let node = createNode(i);
+      if(i === 3) {
+        toRemove = node;
+      }
+      list.add(node);
+    }
+    list.remove(toRemove);
+    let current = list.front();
+    for(let i = 0;i<4;i++) {
+      if(i >= 3) {
+        expect((current as Node).value.valueOf()).to.equal(i+1);
+      } else {
+        expect((current as Node).value.valueOf()).to.equal(i);
+      }
+      current = current.next;
+    }
+
+  });
+  it('should update the value of front() when removing the front element', ()=>{
+    let list = Intrusive.createList<Node>();
+    for(let i = 0;i<5;i++) {
+      let node = createNode(i);
+      list.add(node);
+    }
+    list.remove(list.front());
+    expect((list.front() as Node).value.valueOf()).to.equal(1);
+  });
+  it('should update the value of back() when removing the front element', ()=>{
+    let list = Intrusive.createList<Node>();
+    for(let i = 0;i<5;i++) {
+      let node = createNode(i);
+      list.add(node);
+    }
+    list.remove(list.back());
+    expect((list.back() as Node).value.valueOf()).to.equal(3);
+  });
 });
