@@ -13,6 +13,33 @@ class Foo {
 }
 
 describe('Linked-List Tests', () => {
+
+  it('should concat lists', () => {
+    const listA = new LinkedList(1, 2);
+    const listB = new LinkedList(-1, -2);
+    const headAToHeadB = LinkedList.concat(listA, listB, 'head', 'head').toArray();
+    expect(headAToHeadB[0]).to.equal(2);
+    expect(headAToHeadB[1]).to.equal(1);
+    expect(headAToHeadB[2]).to.equal(-1);
+    expect(headAToHeadB[3]).to.equal(-2);
+    const headAToTailB = LinkedList.concat(listA, listB, 'head', 'tail').toArray();
+    expect(headAToTailB[0]).to.equal(-1);
+    expect(headAToTailB[1]).to.equal(-2);
+    expect(headAToTailB[2]).to.equal(1);
+    expect(headAToTailB[3]).to.equal(2);
+    const tailAToHeadB = LinkedList.concat(listA, listB, 'tail', 'head').toArray();
+    expect(tailAToHeadB[0]).to.equal(1);
+    expect(tailAToHeadB[1]).to.equal(2);
+    expect(tailAToHeadB[2]).to.equal(-1);
+    expect(tailAToHeadB[3]).to.equal(-2);
+    const tailAToTailB = LinkedList.concat(listA, listB, 'tail', 'tail').toArray();
+    expect(tailAToTailB[0]).to.equal(1);
+    expect(tailAToTailB[1]).to.equal(2);
+    expect(tailAToTailB[2]).to.equal(-2);
+    expect(tailAToTailB[3]).to.equal(-1);
+  })
+
+
   it('should create an empty list #1', () => {
     let values: number[] = [];
 

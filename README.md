@@ -351,6 +351,23 @@ let result = list.toArray()
 result // => [4, 5, 6, 7]
 ```
 
+#### LinkedList<T>.concat(): LinkedList<T>
+
+Allows you to concatenate two linked lists using either their heads or tails respectively.
+
+```typescript
+const listA = new LinkedList(1, 2);
+const listB = new LinkedList(-1, -2);
+const headAToHeadB = LinkedList.concat(listA, listB, 'head', 'head').toArray();
+// => [ 2, 1, -1, -2 ]
+const headAToTailB = LinkedList.concat(listA, listB, 'head', 'tail').toArray();
+// => [ -1, -2, 1, 2 ]
+const tailAToHeadB = LinkedList.concat(listA, listB, 'tail', 'head').toArray();
+// => [ 1, 2, -1, -2 ]
+const tailAToTailB = LinkedList.concat(listA, listB, 'tail', 'tail').toArray();
+// => [ 1, 2, -2, -1 ]
+```
+
 ## Attribution
 
 This linked-list was originally shared by Christos Monogios via his [blog][blog]. The [original code][origcode] has been modified and extended to support typedef generics to allow for type checking on stored values for linked lists and iterable and iterator protocols.
