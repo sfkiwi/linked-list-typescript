@@ -41,6 +41,45 @@ export class LinkedList<T> {
     return this._length;
   }
 
+  /**
+   * Given two lists, it concatenates them as configured and returns a single linked list.
+   *
+   * @param listA linked list a
+   * @param listB linked list b
+   * @param listAEnd use head or tail of listA for the joint
+   * @param listBEnd use head or tail of listB for the joint
+   *
+   * @example ```ts
+   * const listA = new LinkedList(1, 2);
+   * const listB = new LinkedList(-1, -2);
+   * const headAToHeadB = LinkedList.concat(listA, listB, 'head', 'head').toArray();
+   * // => [ 2, 1, -1, -2 ]
+   * const headAToTailB = LinkedList.concat(listA, listB, 'head', 'tail').toArray();
+   * // => [ -1, -2, 1, 2 ]
+   * const tailAToHeadB = LinkedList.concat(listA, listB, 'tail', 'head').toArray();
+   * // => [ 1, 2, -1, -2 ]
+   * const tailAToTailB = LinkedList.concat(listA, listB, 'tail', 'tail').toArray();
+   * // => [ 1, 2, -2, -1 ]
+   * ```
+   */
+  static concat<T>(listA: LinkedList<T>, listB: LinkedList<T>, listAEnd: 'head' | 'tail', listBEnd: 'head' | 'tail'): LinkedList<T> {
+    const entriesA = listA.toArray();
+    const entriesB = listB.toArray();
+    if (listAEnd === 'head') {
+      if (listBEnd === 'head') {
+        entriesA.reverse();
+        return new LinkedList(...[...entriesA, ...entriesB]);
+      } else {
+        return new LinkedList(...[...entriesB, ...entriesA]);
+      }
+    } else {
+      if (listBEnd === 'tail') {
+        entriesB.reverse();
+      }
+      return new LinkedList(...[...entriesA, ...entriesB]);
+    }
+  }
+
   // Adds the element at a specific position inside the linked list
   insert(val: T, previousItem: T, checkDuplicates: boolean = false): boolean {
 
