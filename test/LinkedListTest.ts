@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import { LinkedList } from '../src/index'
 
 class Foo {
-  private val: number;
+  private readonly val: number;
   constructor(val: number) {
     this.val = val;
   }
