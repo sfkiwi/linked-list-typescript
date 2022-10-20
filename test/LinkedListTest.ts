@@ -238,7 +238,6 @@ describe('Linked-List Tests', () => {
     expect(list.tail).to.be.null;
   })
 
-
   it('should remove the first value in the list', () => {
     let values: number[] = [4, 5, 6]
     let list = new LinkedList<number>(...values);
