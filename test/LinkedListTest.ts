@@ -228,6 +228,17 @@ describe('Linked-List Tests', () => {
     expect(result).to.be.false;
   });
 
+  it('should clear the list', () => {
+    let values: number[] = [1, 2, 3]
+    let list = new LinkedList<number>(...values);
+    expect(list.length).to.equal(3);
+    list.clear()
+    expect(list.length).to.be.equal(0);
+    expect(list.head).to.be.null;
+    expect(list.tail).to.be.null;
+  })
+
+
   it('should remove the first value in the list', () => {
     let values: number[] = [4, 5, 6]
     let list = new LinkedList<number>(...values);
