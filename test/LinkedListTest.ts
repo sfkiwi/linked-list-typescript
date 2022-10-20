@@ -74,7 +74,6 @@ describe('Linked-List Tests', () => {
   it('should support deconstruction', () => {
     let values: number[] = [0, 1, 2]
     let list = new LinkedList<number>(...values);
-    let count = 0;
     let [a, b, c] = list;
     expect(a).to.equal(values[0]);
     expect(b).to.equal(values[1]);
