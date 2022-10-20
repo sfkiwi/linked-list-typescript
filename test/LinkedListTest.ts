@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import { LinkedList } from '../src/index'
 
 class Foo {
-  private val: number;
+  private readonly val: number;
   constructor(val: number) {
     this.val = val;
   }
@@ -74,7 +74,6 @@ describe('Linked-List Tests', () => {
   it('should support deconstruction', () => {
     let values: number[] = [0, 1, 2]
     let list = new LinkedList<number>(...values);
-    let count = 0;
     let [a, b, c] = list;
     expect(a).to.equal(values[0]);
     expect(b).to.equal(values[1]);
@@ -227,6 +226,16 @@ describe('Linked-List Tests', () => {
     expect(list.tail).to.equal(foo4);
     expect(result).to.be.false;
   });
+
+  it('should clear the list', () => {
+    let values: number[] = [1, 2, 3]
+    let list = new LinkedList<number>(...values);
+    expect(list.length).to.equal(3);
+    list.clear()
+    expect(list.length).to.be.equal(0);
+    expect(list.head).to.be.null;
+    expect(list.tail).to.be.null;
+  })
 
   it('should remove the first value in the list', () => {
     let values: number[] = [4, 5, 6]
